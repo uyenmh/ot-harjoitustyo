@@ -2,17 +2,14 @@
 
 ## Sovelluksen tarkoitus
 
-Käyttäjä voi pelata vaikeustasoltaan erilaisia sudoku pelejä ja pitää kirjaa siitä, kuinka kauan pelien voittamiseen meni.
+Käyttäjä voi pelata vaikeustasoltaan erilaisia sudoku pelejä ja lisätä käyttämänsä aika leaderboardiin. 
 
 ## Suunnitellut toiminnallisuudet
 
-- Käyttäjä voi luoda käyttäjätunnuksen
-- Käyttäjä voi kirjautua sisälle luotua käyttäjätunnuksen
-- Sisäänkirjautunut käyttäjä voi kirjautua ulos
 - Käyttäjä voi valita pelin vaikeustason
 - Käyttäjä voi pelata sudokua valitsemallaan vaikeustasolla
 - Pelin alettua, ajastin käynnistyy
-- Peliin käytetty aika tallentuu käyttäjän tietoihin 
+- Käyttäjä voi tallettaa peliin käytetyn ajan leaderboardiin
 - Käyttäjä voi keskeyttää pelin
 
 ## Jatkokehitysideat
