@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Käyttäjä voi pelata vaikeustasoltaan erilaisia sudoku pelejä ja lisätä käyttämänsä aika leaderboardiin. 
+Käyttäjä voi pelata vaikeustasoltaan erilaisia sudoku pelejä ja lisätä peliin käyttämänsä aika leaderboardiin. 
 
 ## Suunnitellut toiminnallisuudet
 
