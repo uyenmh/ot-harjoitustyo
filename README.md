@@ -1,4 +1,4 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Ohjelmistotekniikka, harjoitustyö: Sudoku
 
 Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla. 
 
