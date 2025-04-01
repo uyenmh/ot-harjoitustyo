@@ -10,3 +10,4 @@
 |1.4.   |20 min  | invoke-tehtävien luominen |
 |1.4.   |1h      | README.md päivitys ja harjoitustyön testaus virtuaalityöasemassa |
 |1.4.   |45 min  | yksikkötestien lisääminen |
+|1.4.   |1.5h    | käyttöliittymän ja sovelluslogiikan erittely ja yksikkötestien muokkaaminen toimiviksi | 

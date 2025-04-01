@@ -1,9 +1,9 @@
 import tkinter as tk
-from entities.sudoku_game import SudokuGame
+from ui.sudoku_ui import SudokuUI
 
 def main():
     root = tk.Tk()
-    app = SudokuGame(root)
+    app = SudokuUI(root)
     root.mainloop()
 
 if __name__ == "__main__":

@@ -5,53 +5,44 @@ from entities.sudoku_game import SudokuGame
 
 class TestSudokuGame(unittest.TestCase):
     def setUp(self):
-        self.root = tk.Tk()
-        self.app = SudokuGame(self.root)
+        self.game = SudokuGame()
 
-    def test_choose_difficulty(self):
-        self.app.difficulty.set("Hard")
+    def test_define_difficulty(self):
+        self.game._define_difficulty("Hard")
 
-        self.assertEqual(self.app.difficulty.get(), "Hard")
+        self.assertEqual(self.game.difficulty, 0.6)
 
-    def test_start_game_at_easy(self):
-        self.app.start_game()
+    def test_get_puzzle_board_is_list(self):
+        puzzle_board = self.game.get_puzzle_board()
 
-        self.assertEqual(self.app.difficulty.get(), "Easy")
-        self.assertIsNotNone(self.app.game_root)
-        self.assertEqual(self.app.game_root.title(), "Sudoku")
-        self.assertIsInstance(self.app.puzzle, Sudoku)
-        self.assertIsInstance(self.app.solution, Sudoku)
+        self.assertIsInstance(puzzle_board, list)
 
-    def test_start_game_at_medium(self):
-        self.app.difficulty.set("Medium")
+    def test_get_puzzle_board_is_correct_size_list(self):
+        puzzle_board = self.game.get_puzzle_board()
 
-        self.app.start_game()
+        self.assertEqual(len(puzzle_board), 9)
+        for row in range(9):
+            self.assertEqual(len(puzzle_board[row]), 9)
 
-        self.assertEqual(self.app.difficulty.get(), "Medium")
-        self.assertIsNotNone(self.app.game_root)
-        self.assertEqual(self.app.game_root.title(), "Sudoku")
-        self.assertIsInstance(self.app.puzzle, Sudoku)
-        self.assertIsInstance(self.app.solution, Sudoku)
+    def test_get_solution_board_is_list(self):
+        solution_board = self.game.get_solution_board()
 
-    def test_start_game_at_hard(self):
-        self.app.difficulty.set("Hard")
+        self.assertIsInstance(solution_board, list)
 
-        self.app.start_game()
+    def test_get_solution_board_is_correct_size_list(self):
+        solution_board = self.game.get_solution_board()
 
-        self.assertEqual(self.app.difficulty.get(), "Hard")
-        self.assertIsNotNone(self.app.game_root)
-        self.assertEqual(self.app.game_root.title(), "Sudoku")
-        self.assertIsInstance(self.app.puzzle, Sudoku)
-        self.assertIsInstance(self.app.solution, Sudoku)
+        self.assertEqual(len(solution_board), 9)
 
-    def test_exit_game(self):
-        pass
-    
-    def test_end_game(self):
-        pass
+        for row in range(9):
+            self.assertEqual(len(solution_board[row]), 9)
 
-    def test_check_correct_solution(self):
-        pass
+    def test_get_solution_board_no_cells_are_none(self):
+        solution_board = self.game.get_solution_board()
 
-    def test_check_incorrect_solution(self):
+        for row in range(9):
+            for col in range(9):
+                self.assertIsNotNone(solution_board[row][col])
+
+    def test_is_solution_correct(self):
         pass
