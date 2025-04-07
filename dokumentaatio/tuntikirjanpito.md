@@ -11,3 +11,7 @@
 |1.4.   |1h      | README.md päivitys ja harjoitustyön testaus virtuaalityöasemassa |
 |1.4.   |45 min  | yksikkötestien lisääminen |
 |1.4.   |1.5h    | käyttöliittymän ja sovelluslogiikan erittely ja yksikkötestien muokkaaminen toimiviksi | 
+|6.4.   |3h      | pylintin lisääminen ja ajastimen luomista  |
+|7.4.   |3h      | ajastimen loppuun tekeminen + peli voidaan keskeyttää ja uusi peli voidaan aloittaa sen jälkeen |
+|       |1h      | sudoku näkymän muokkaus | 
+| yht   |

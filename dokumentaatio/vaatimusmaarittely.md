@@ -4,13 +4,15 @@
 
 Käyttäjä voi pelata vaikeustasoltaan erilaisia sudoku pelejä ja lisätä peliin käyttämänsä aika leaderboardiin. 
 
-## Suunnitellut toiminnallisuudet
+## Perusversion tarjoama toiminnallisuus
 
-- Käyttäjä voi valita pelin vaikeustason
-- Käyttäjä voi pelata sudokua valitsemallaan vaikeustasolla
-- Pelin alettua, ajastin käynnistyy
+- Käyttäjä voi valita pelin vaikeustason &check;
+- Käyttäjä voi pelata sudokua valitsemallaan vaikeustasolla &check;
+- Pelin alettua, ajastin käynnistyy &check;
 - Käyttäjä voi tallettaa peliin käytetyn ajan leaderboardiin
-- Käyttäjä voi keskeyttää pelin
+- Käyttäjä voi keskeyttää pelin &check;
+- Pelin keskeytyksen jälkeen käyttäjä voi aloittaa uuden pelin &check;
+- Täydennettyään sudokun, käyttäjä voi tarkistaa, onko vastaus oikein &check;
 
 ## Jatkokehitysideat
 
@@ -18,3 +20,6 @@ Käyttäjä voi pelata vaikeustasoltaan erilaisia sudoku pelejä ja lisätä pel
 - Sovellus näyttää, mitkä ruudukot ovat väärin
 - Sovellus korostaa käyttäjän valitsemat luvut
 - Ruudukoihin voidaan lisätä useampi luku
+
+> [!NOTE]
+> Tehdyt toiminnallisuudet merkitty symbolilla &check;

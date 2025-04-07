@@ -11,3 +11,10 @@
 - Testattu, että pelin vaikeustasoa voidaan vaihtaa
 - Testattu, että SudokuGame-luokka palauttaa oikean tyyppisen ja kokoisen pelilaudan
 - Testattu, että SudokuGame-luokka palauttaa oikean tyyppisen ja kokoisen ratkaisulaudan, joka ei ole missään kohtaa tyhjä
+
+## Viikko 4
+
+- Pelin käynnistäminen käynnistää myös ajastimen, joka näkyy sovelluksen yläreunassa
+- Ajastin pysähtyy, kun sudoku on ratkottu oikein
+- Käyttäjä voi keskeyttää pelin ilman, että sovellus sulkeutuu 
+- Pelin keskeytymisen jälkeen, käyttäjä voi aloittaa uuden pelin 
