@@ -1,7 +1,8 @@
 import unittest
 import tkinter as tk
 from sudoku import Sudoku
-from entities.sudoku_game import SudokuGame  
+from entities.sudoku_game import SudokuGame
+
 
 class TestSudokuGame(unittest.TestCase):
     def setUp(self):
