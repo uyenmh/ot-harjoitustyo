@@ -30,11 +30,6 @@ class SudokuUI:
         ttk.Button(mainframe, text="Start game", command=self.start_game).pack(padx=120, pady=(10,5))
         ttk.Button(mainframe, text="Exit game", command=self.exit_game).pack(padx=120, pady=(10,5))
 
-    def exit_game(self):
-        if self.game_root:
-            self.game_root.destroy()
-        self.initial_root.destroy()
-
     def start_game(self):
         self.game = SudokuGame(self.difficulty.get())
 
@@ -66,16 +61,42 @@ class SudokuUI:
         self.puzzle = self.game.get_puzzle_board()
         
         # AI generated code starts here 
-        for row in range(9):
+        for block_row in range(3):
             row_cells = []
-            for col in range(9):
-                preset_value = self.puzzle[row][col]
-                entry = ttk.Entry(mainframe, width=3, font=('Arial', 20), justify='center')
-                entry.grid(row=row, column=col, padx=2, pady=2)
-                if preset_value:
-                    entry.insert(0, str(preset_value))
-                    entry.config(state='disabled')
-                row_cells.append(entry)
+            for block_col in range(3):
+                block_frame = tk.Frame(
+                    mainframe,
+                    highlightbackground="black",
+                    highlightcolor="black",
+                    highlightthickness=2
+                )
+                block_frame.grid(row=block_row, column=block_col, padx=2, pady=2)
+
+                for i in range(3):
+                    for j in range(3):
+                        row = block_row * 3 + i
+                        col = block_col * 3 + j
+                        preset_value = self.puzzle[row][col]
+
+                        entry = tk.Entry(
+                            block_frame,
+                            width=3,
+                            font=('Arial', 20),
+                            justify='center',
+                            relief='solid',
+                            bd=1
+                        )
+
+                        entry.grid(row=i, column=j, padx=1, pady=1)
+
+                        if preset_value:
+                            entry.insert(0, str(preset_value))
+                            entry.config(state='disabled')
+
+                        if len(self.game_board) <= row:
+                            self.game_board.append([])
+                        self.game_board[row].append(entry)
+
             self.game_board.append(row_cells)
         
         ttk.Button(self.game_root, text="Check Solution", command=self.check_solution).pack(pady=(0,5))
@@ -90,6 +111,11 @@ class SudokuUI:
         hours, minutes, seconds = self.game.get_elapsed_time()
         self.timer.config(text=f"{hours:02}:{minutes:02}:{seconds:02}")
         self.game_root.after(1000, self.update_timer) 
+
+    def exit_game(self):
+        if self.game_root:
+            self.game_root.destroy()
+        self.initial_root.destroy()
 
     def end_game(self):
         self.game_root.destroy()
