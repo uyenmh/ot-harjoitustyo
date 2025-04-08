@@ -4,7 +4,7 @@ from ui.sudoku_ui import SudokuUI
 
 def main():
     root = tk.Tk()
-    app = SudokuUI(root)
+    SudokuUI(root)
     root.mainloop()
 
 
