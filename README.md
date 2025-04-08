@@ -5,7 +5,8 @@ Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla.
 ## Dokumentaatio
 
 - [Vaatimusmäärittely](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
-- [Työkirjanpito](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+- [Arkkitehtuurikuvaus](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+- [Työaikakirjanpito](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
 ## Asennus
@@ -30,4 +31,8 @@ poetry run invoke test
 Generoi testikattavuusrapotti komennolla:
 ```bash
 poetry run invoke coverage-report
+```
+Suorita tiedoston [.pylintrc](https://github.com/uyenmh/ot-harjoitustyo/blob/master/.pylintrc) määrittelemät tarkistukset komennolla:
+```bash
+poetry run invoke lint
 ```
