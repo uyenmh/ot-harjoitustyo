@@ -1,4 +1,5 @@
 import unittest
+import time
 import tkinter as tk
 from sudoku import Sudoku
 from entities.sudoku_game import SudokuGame
@@ -8,7 +9,16 @@ class TestSudokuGame(unittest.TestCase):
     def setUp(self):
         self.game = SudokuGame()
 
-    def test_define_difficulty(self):
+    def test_difficulty_not_changed(self):
+
+        self.assertEqual(self.game.difficulty, 0.3)
+
+    def test_change_difficulty_to_medium(self):
+        self.game._define_difficulty("Medium")
+
+        self.assertEqual(self.game.difficulty, 0.45)
+
+    def test_change_difficulty_to_hard(self):
         self.game._define_difficulty("Hard")
 
         self.assertEqual(self.game.difficulty, 0.6)
@@ -45,5 +55,36 @@ class TestSudokuGame(unittest.TestCase):
             for col in range(9):
                 self.assertIsNotNone(solution_board[row][col])
 
-    def test_is_solution_correct(self):
-        pass
+    def test_solution_is_incorrect(self):
+        root = tk.Tk()
+        puzzle = self.game.get_puzzle_board()
+        board = [[tk.Entry(root) for _ in range(9)] for _ in range(9)]
+
+        for row in range(9):
+            for col in range(9):
+                preset_value = puzzle[row][col]
+                if not preset_value:
+                    board[row][col].insert(0, str(0))
+                board[row][col].insert(0, str(preset_value))
+
+        result = self.game.is_solution_correct(board)
+        self.assertEqual(result, False)
+
+    def test_solution_is_correct(self):
+        root = tk.Tk()
+        solution = self.game.get_solution_board()
+        board = [[tk.Entry(root) for _ in range(9)] for _ in range(9)]
+
+        for row in range(9):
+            for col in range(9):
+                correct_value = solution[row][col]
+                board[row][col].insert(0, str(correct_value))
+
+        result = self.game.is_solution_correct(board)
+        self.assertEqual(result, True)
+
+    def test_getting_elapsed_time(self):
+        time.sleep(100)
+        elapsed_time = self.game.get_elapsed_time()
+
+        self.assertEqual(elapsed_time, (0,1,40))
