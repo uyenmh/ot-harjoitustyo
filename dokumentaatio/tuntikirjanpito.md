@@ -14,4 +14,5 @@
 |6.4.   |3h      | pylintin lisääminen ja ajastimen luomista  |
 |7.4.   |3h      | ajastimen loppuun tekeminen + peli voidaan keskeyttää ja uusi peli voidaan aloittaa sen jälkeen |
 |       |1h      | sudoku näkymän muokkaus | 
-| yht   |22h 55 min |
+|8.4.   |2h 35 min  | arkkitehtuurikuvauksen luominen, dokumentaation päivitys, uusien yksikkötestien luominen, harjoitustyön testaus virtuaalityöasemassa |
+| yht   |25.5h   |

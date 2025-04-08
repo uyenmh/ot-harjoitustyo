@@ -18,3 +18,5 @@
 - Ajastin pysähtyy, kun sudoku on ratkottu oikein
 - Käyttäjä voi keskeyttää pelin ilman, että sovellus sulkeutuu 
 - Pelin keskeytymisen jälkeen, käyttäjä voi aloittaa uuden pelin 
+- Testattu, että SudokuGame-luokka tarkistaa sudokun oikein
+- Testattu, että SudokuGame-luokan ajastin toimii oikein
