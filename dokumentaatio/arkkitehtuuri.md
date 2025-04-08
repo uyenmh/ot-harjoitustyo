@@ -1,9 +1,5 @@
 # Arkkitehtuurikuvaus
 
-## Pakkauskaavio
-
-![Pakkauskaavio](.kuvat/pakkauskaavio.jpg)
-
 ## Luokkakaavio
 
 ```mermaid
@@ -16,3 +12,7 @@
         end_time
     }
 ```
+
+## Pakkauskaavio
+
+![Pakkauskaavio](./kuvat/pakkauskaavio.jpg)
