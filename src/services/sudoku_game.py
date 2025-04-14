@@ -1,5 +1,7 @@
 import time
 from sudoku import Sudoku
+from entities.score import Score
+from repositories.score_repository import score_repository
 
 
 class SudokuGame:
@@ -9,6 +11,7 @@ class SudokuGame:
         self.solution = self.puzzle.solve()
         self.start_time = time.time()
         self.end_time = None
+        self._score_repository = score_repository
 
     def _define_difficulty(self, difficulty):
         if difficulty == "Easy":
@@ -37,10 +40,57 @@ class SudokuGame:
 
     def get_elapsed_time(self):
         self.end_time = time.time()
-        elapsed_time = self.end_time - self.start_time
+        elapsed_time = int(self.end_time - self.start_time)
         minutes, seconds = divmod(elapsed_time, 60)
         hours, minutes = divmod(minutes, 60)
-        hours = int(hours)
-        minutes = int(minutes)
-        seconds = int(seconds)
-        return hours, minutes, seconds
+
+        return hours, minutes, seconds, elapsed_time
+
+    def save_score(self, name, difficulty, elapsed_time):
+        score = self._score_repository.save(Score(name, difficulty, elapsed_time))
+
+        return score
+
+    def get_elapsed_time_as_string(self, score):
+        elapsed_time = int(score.time)
+        minutes, seconds = divmod(elapsed_time, 60)
+        hours, minutes = divmod(minutes, 60)
+
+        time_as_str = ""
+        if hours > 0:
+            time_as_str = f"{hours}h {minutes}m {seconds}s"
+        elif hours == 0 and minutes > 0:
+            time_as_str = f"{minutes}m {seconds}s"
+        else:
+            time_as_str = f"{seconds}s"
+
+        return time_as_str
+
+    def show_leaderboard(self):
+        scores = self._score_repository.show_top_ten()
+
+        scores_at_hard = []
+        scores_at_medium = []
+        scores_at_easy = []
+
+        index_hard = 1
+        index_medium = 1
+        index_easy = 1
+
+        for score in scores:
+            time_as_str = self.get_elapsed_time_as_string(score)
+
+            if score.difficulty == "Hard":
+                scores_at_hard.append(f"{index_hard}. {score.name} {time_as_str}")
+
+                index_hard += 1
+            elif score.difficulty == "Medium":
+                scores_at_medium.append(f"{index_medium}. {score.name} {time_as_str}")
+
+                index_medium += 1
+            elif score.difficulty == "Easy":
+                scores_at_easy.append(f"{index_easy}. {score.name} {time_as_str}")
+
+                index_easy += 1
+
+        return scores_at_hard, scores_at_medium, scores_at_easy
