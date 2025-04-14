@@ -16,6 +16,11 @@ Asenna riippuvuudet komennolla:
 poetry install
 ```
 
+Alusta tietokanta komennolla:
+```bash
+poetry run invoke setup-db
+```
+
 ## Komentorivitoiminnot 
 
 Käynnistä sovellus komennolla:
@@ -28,7 +33,7 @@ Suorita testit komennolla:
 poetry run invoke test
 ```
 
-Generoi testikattavuusrapotti komennolla:
+Generoi testikattavuusraportti komennolla:
 ```bash
 poetry run invoke coverage-report
 ```

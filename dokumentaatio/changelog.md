@@ -20,3 +20,11 @@
 - Pelin keskeytymisen jälkeen, käyttäjä voi aloittaa uuden pelin 
 - Testattu, että SudokuGame-luokka tarkistaa sudokun oikein
 - Testattu, että SudokuGame-luokan ajastin toimii oikein
+
+## Viikko 5
+
+- Kun sudoku ratkaistaan onnistuneesti
+    - Käyttäjä voi tallentaa peliin käytetyn ajan tietokantaan kerran
+    - Aika tallentuu tietokantaan annetulla nimellä
+    - Jos käyttäjä ei antanut nimeä, nimeksi tallentuu "unknown"
+- Käyttäjä voi tarkastella leaderboardia, jossa näkyy top 10 tulosta jokaiselle vaikeustasolle

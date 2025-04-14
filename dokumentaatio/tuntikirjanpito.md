@@ -15,4 +15,8 @@
 |7.4.   |3h      | ajastimen loppuun tekeminen + peli voidaan keskeyttää ja uusi peli voidaan aloittaa sen jälkeen |
 |       |1h      | sudoku näkymän muokkaus | 
 |8.4.   |2h 35 min  | arkkitehtuurikuvauksen luominen, dokumentaation päivitys, uusien yksikkötestien luominen, harjoitustyön testaus virtuaalityöasemassa |
-| yht   |25.5h   |
+|11.4.  |2h      | tietokannan ja tietokantayhteyden luominen |
+|13.4.  |7h      | peliin käytetty aika tallentuu tietokantaan ja leaderboard näkymä luotu + jos sudoku on ratkaistu oikein, Check solution -nappi poistuu käytöstä |
+|       |1h      | leaderboard näkymän korjaus |
+|14.4.  |4h      | koodin refaktorointia |
+| yht   |39.5h   |
