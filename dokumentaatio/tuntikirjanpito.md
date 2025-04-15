@@ -19,4 +19,6 @@
 |13.4.  |7h      | peliin käytetty aika tallentuu tietokantaan ja leaderboard näkymä luotu + jos sudoku on ratkaistu oikein, Check solution -nappi poistuu käytöstä |
 |       |1h      | leaderboard näkymän korjaus |
 |14.4.  |4h      | koodin refaktorointia |
-| yht   |39.5h   |
+|15.4.  |1.5h    | sekvenssikaavioiden luomista ja arkkitehtuurikuvauksen muokkaamista |
+|       |2h      | yksikkötestauksen lisäämistä ja muokkaamista |
+| yht   |43h     |
