@@ -9,6 +9,10 @@ Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla.
 - [Työaikakirjanpito](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
+## Releaset
+
+- [Viikon 5 release](https://github.com/uyenmh/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennus
 
 Asenna riippuvuudet komennolla:
