@@ -2,7 +2,7 @@ import unittest
 import time
 import tkinter as tk
 from sudoku import Sudoku
-from entities.sudoku_game import SudokuGame
+from services.sudoku_game import SudokuGame
 
 
 class TestSudokuGame(unittest.TestCase):
@@ -10,7 +10,6 @@ class TestSudokuGame(unittest.TestCase):
         self.game = SudokuGame()
 
     def test_difficulty_not_changed(self):
-
         self.assertEqual(self.game.difficulty, 0.3)
 
     def test_change_difficulty_to_medium(self):
@@ -84,7 +83,7 @@ class TestSudokuGame(unittest.TestCase):
         self.assertEqual(result, True)
 
     def test_getting_elapsed_time(self):
-        time.sleep(100)
+        time.sleep(5)
         elapsed_time = self.game.get_elapsed_time()
 
-        self.assertEqual(elapsed_time, (0,1,40))
+        self.assertEqual(elapsed_time, (0,0,5,5))
