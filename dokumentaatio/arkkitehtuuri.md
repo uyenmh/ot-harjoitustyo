@@ -41,7 +41,7 @@ Tässä osiossa kuvataan sovelluksen rakennetta luokka- ja pakkauskaaviolla.
 
 ### Pakkauskaavio
 
-![Pakkauskaavio](./kuvat/pakkauskaavio.jpg)
+![Pakkauskaavio](./kuvat/arkkitehtuuri-pakkauskaavio.jpg)
 
 ## Päätoiminnallisuudet
 
