@@ -10,7 +10,8 @@ class SudokuGame:
         self.puzzle = Sudoku(3, seed=None).difficulty(self.difficulty)
         self.solution = self.puzzle.solve()
         self.start_time = time.time()
-        self.end_time = None
+        self.pause_time_start = None
+        self.total_paused_time = 0
         self._score_repository = score_repository
 
     def _define_difficulty(self, difficulty):
@@ -38,18 +39,20 @@ class SudokuGame:
         return True
     # AI generated code ends here
 
-    def get_elapsed_time(self):
-        self.end_time = time.time()
-        elapsed_time = int(self.end_time - self.start_time)
+    def get_elapsed_time_for_current_game(self):
+        current_time = time.time()
+        elapsed_time = int(current_time - self.start_time - self.total_paused_time)
         minutes, seconds = divmod(elapsed_time, 60)
         hours, minutes = divmod(minutes, 60)
 
         return hours, minutes, seconds, elapsed_time
 
-    def save_score(self, name, difficulty, elapsed_time):
-        score = self._score_repository.save(Score(name, difficulty, elapsed_time))
+    def pause_game(self):
+        self.pause_time_start = time.time()
 
-        return score
+    def continue_game(self):
+        pause_time_end = time.time()
+        self.total_paused_time += pause_time_end - self.pause_time_start
 
     def get_elapsed_time_as_string(self, score):
         elapsed_time = int(score.time)
@@ -65,6 +68,11 @@ class SudokuGame:
             time_as_str = f"{seconds}s"
 
         return time_as_str
+
+    def save_score(self, name, difficulty, elapsed_time):
+        score = self._score_repository.save(Score(name, difficulty, elapsed_time))
+
+        return score
 
     def show_leaderboard(self):
         scores = self._score_repository.show_top_ten()

@@ -14,10 +14,13 @@ class SudokuUI:
         self.game_board = []
         self.game = None
         self.timer_running = False
+        self.timer_id = None
         self.elapsed_time = 0
         self.name_entry = None
         self.check_solution_button = None
         self.save_score_button = None
+        self.pause_game_button = None
+        self.continue_game_button = None
 
         self.choose_difficulty()
 
@@ -113,8 +116,18 @@ class SudokuUI:
         button_style = ttk.Style()
         button_style.configure("my.TButton", font=("Calibri", 10))
 
+        pause_continue_buttons_frame = ttk.Frame(self.game_root)
+        pause_continue_buttons_frame.pack(pady=(0, 5))
+
+        self.pause_game_button = ttk.Button(pause_continue_buttons_frame, text="Pause game", style="my.TButton", command=self.pause_game)
+        self.pause_game_button.pack(side="left", padx=(0, 5))
+
+        self.continue_game_button = ttk.Button(pause_continue_buttons_frame, text="Continue game", style="my.TButton", command=self.continue_game)
+        self.continue_game_button.pack(side="left", padx=(5, 0))
+        self.continue_game_button["state"] = "disabled"
+
         self.check_solution_button = ttk.Button(self.game_root, text="Check Solution", style="my.TButton", command=self.check_solution)
-        self.check_solution_button.pack(pady=(0,5))
+        self.check_solution_button.pack(pady=(10,5))
 
         name_entry_frame = ttk.Frame(self.game_root)
         name_entry_frame.pack(pady=(10, 0))
@@ -134,9 +147,25 @@ class SudokuUI:
     def update_timer(self):
         if not self.timer_running:
             return
-        hours, minutes, seconds, _ = self.game.get_elapsed_time()
+        hours, minutes, seconds, _ = self.game.get_elapsed_time_for_current_game()
         self.timer.config(text=f"{hours:02}:{minutes:02}:{seconds:02}")
-        self.game_root.after(1000, self.update_timer)
+        self.timer_id = self.game_root.after(1000, self.update_timer)
+
+
+    def pause_game(self):
+        self.timer_running = False
+        self.game.pause_game()
+
+        self.pause_game_button["state"] = "disabled"
+        self.continue_game_button["state"] = "normal"
+
+    def continue_game(self):
+        self.timer_running = True
+        self.game.continue_game()
+        self.update_timer()
+
+        self.continue_game_button["state"] = "disabled"
+        self.pause_game_button["state"] = "normal"
 
     def save_game_score(self):
         if self.game.is_solution_correct:
@@ -199,7 +228,7 @@ class SudokuUI:
     def check_solution(self):
         if self.game.is_solution_correct(self.game_board):
             self.timer_running = False
-            hours, minutes, seconds, self.elapsed_time = self.game.get_elapsed_time()
+            hours, minutes, seconds, self.elapsed_time = self.game.get_elapsed_time_for_current_game()
             self.save_score_button["state"] = "normal"
             if hours > 0:
                 messagebox.showinfo("Success", f"Congratulations! You solved the Sudoku!\nTime: {hours}h {minutes}m {seconds}s")
