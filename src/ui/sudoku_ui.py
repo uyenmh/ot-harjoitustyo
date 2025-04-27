@@ -186,10 +186,26 @@ class SudokuUI:
         self.save_score_button["state"] = "disabled"
 
     def view_leaderboard(self):
+        current_root = None
+        view_leaderboard = None
+
         if self.game_root:
-            self.game_root.destroy()
+            current_root = self.game_root
+            view_leaderboard = messagebox.askyesno(
+                title="View leaderboard", 
+                message="Are you sure you want to view the leaderboard? " \
+                "All of the current game progress will be lost."
+            )
+            self.game_root.after_cancel(self.timer_id)
+            self.timer_running = False
         else:
-            self.initial_root.destroy()
+            current_root = self.initial_root
+            view_leaderboard = True
+
+        if not view_leaderboard:
+            return
+
+        current_root.destroy()
 
         self.leaderboard_root = tk.Tk()
         self.leaderboard_root.title("Sudoku Leaderboard")
@@ -220,18 +236,54 @@ class SudokuUI:
         ttk.Button(self.leaderboard_root, text="Exit game", style="my.TButton", command=self.exit_game).pack(pady=(0,20))
 
     def exit_game(self):
+        current_root = None
+        exit_game = None
+
         if self.leaderboard_root:
-            self.leaderboard_root.destroy()
+            current_root = self.leaderboard_root
         elif self.game_root:
-            self.game_root.destroy()
+            current_root = self.game_root
         else:
-            self.initial_root.destroy()
+            current_root = self.initial_root
+
+        if current_root == self.game_root:
+            exit_game = messagebox.askyesno(
+                title="Exit game",
+                message="Are you sure you want to exit the game? " \
+                "All of the current game progress will be lost and the application will be closed."
+            )
+        else:
+            exit_game = messagebox.askyesno(
+                title="Exit game",
+                message="Are you sure you want to exit the game? This will close the application."
+            )
+
+        if not exit_game:
+            return
+        
+        current_root.destroy()
 
     def return_to_menu(self):
+        current_root = None
+        return_to_menu = None
+
         if self.leaderboard_root:
-            self.leaderboard_root.destroy()
-        elif self.game_root.destroy():
-            self.game_root.destroy()
+            current_root = self.leaderboard_root
+            return_to_menu = True
+        elif self.game_root:
+            current_root = self.game_root
+            return_to_menu = messagebox.askyesno(
+                title="Return to menu",
+                message="Are you sure you want to return to menu? " \
+                "All of the current game progress will be lost."
+            )
+            self.game_root.after_cancel(self.timer_id)
+            self.timer_running = False
+
+        if not return_to_menu:
+            return 
+        
+        current_root.destroy()
         new_root = tk.Tk()
         SudokuUI(new_root)
 
