@@ -24,12 +24,24 @@ class SudokuUI:
         self.choose_difficulty()
 
     def choose_difficulty(self):
-        mainframe = ttk.Frame(self.initial_root, padding=10)
+        mainframe = ttk.Frame(
+            self.initial_root,
+            padding=10
+        )
         mainframe.pack()
 
-        ttk.Label(mainframe, text="Choose difficulty level:", font=("Calibri", 10)).pack(pady=(0,2))
+        ttk.Label(
+            mainframe,
+            text="Choose difficulty level:",
+            font=("Calibri", 10)
+        ).pack(pady=(0,2))
 
-        difficulty = ttk.Combobox(mainframe, textvariable=self.difficulty, state="readonly", font=("Calibri", 10))
+        difficulty = ttk.Combobox(
+            mainframe,
+            textvariable=self.difficulty,
+            state="readonly",
+            font=("Calibri", 10)
+        )
         difficulty["values"] = ("Easy", "Medium", "Hard")
         difficulty.pack()
 
@@ -38,9 +50,26 @@ class SudokuUI:
         button_style = ttk.Style()
         button_style.configure("my.TButton", font=("Calibri", 10))
 
-        ttk.Button(mainframe, text="Start game", style="my.TButton", command=self.start_game).pack(padx=120, pady=(15,5))
-        ttk.Button(mainframe, text="View leaderboard", style="my.TButton", command=self.view_leaderboard).pack(pady=(10,5))
-        ttk.Button(mainframe, text="Exit game", style="my.TButton", command=self.exit_game).pack(padx=120, pady=(10,5))
+        ttk.Button(
+            mainframe,
+            text="Start game",
+            style="my.TButton",
+            command=self.start_game
+        ).pack(padx=120, pady=(15,5))
+
+        ttk.Button(
+            mainframe,
+            text="View leaderboard",
+            style="my.TButton",
+            command=self.view_leaderboard
+        ).pack(pady=(10,5))
+
+        ttk.Button(
+            mainframe,
+            text="Exit game",
+            style="my.TButton",
+            command=self.exit_game
+        ).pack(padx=120, pady=(10,5))
 
     def start_game(self):
         self.game = SudokuGame(self.difficulty.get())
@@ -64,7 +93,9 @@ class SudokuUI:
         )
         self.timer.pack(pady=(30, 0))
 
-        mainframe = ttk.Frame(self.game_root, padding=30)
+        mainframe = ttk.Frame(
+            self.game_root,
+            padding=30)
         mainframe.pack()
 
         self.timer_running = True
@@ -83,7 +114,12 @@ class SudokuUI:
                     highlightcolor="black",
                     highlightthickness=2
                 )
-                block_frame.grid(row=block_row, column=block_col, padx=2, pady=2)
+                block_frame.grid(
+                    row=block_row,
+                    column=block_col,
+                    padx=2,
+                    pady=2
+                )
 
                 for i in range(3):
                     for j in range(3):
@@ -102,7 +138,12 @@ class SudokuUI:
                             validatecommand=vcmd
                         )
 
-                        entry.grid(row=i, column=j, padx=1, pady=1)
+                        entry.grid(
+                            row=i,
+                            column=j,
+                            padx=1,
+                            pady=1
+                        )
 
                         if preset_value:
                             entry.insert(0, str(preset_value))
@@ -118,33 +159,86 @@ class SudokuUI:
         button_style = ttk.Style()
         button_style.configure("my.TButton", font=("Calibri", 10))
 
-        pause_continue_buttons_frame = ttk.Frame(self.game_root)
-        pause_continue_buttons_frame.pack(pady=(0, 5))
+        pause_buttons_frame = ttk.Frame(self.game_root)
+        pause_buttons_frame.pack(pady=(0, 5))
 
-        self.pause_game_button = ttk.Button(pause_continue_buttons_frame, text="Pause game", style="my.TButton", command=self.pause_game)
-        self.pause_game_button.pack(side="left", padx=(0, 5))
+        self.pause_game_button = ttk.Button(
+            pause_buttons_frame,
+            text="Pause game",
+            style="my.TButton",
+            command=self.pause_game
+        )
+        self.pause_game_button.pack(
+            side="left",
+            padx=(0, 5)
+        )
 
-        self.continue_game_button = ttk.Button(pause_continue_buttons_frame, text="Continue game", style="my.TButton", command=self.continue_game)
-        self.continue_game_button.pack(side="left", padx=(5, 0))
+        self.continue_game_button = ttk.Button(
+            pause_buttons_frame,
+            text="Continue game",
+            style="my.TButton",
+            command=self.continue_game
+        )
+        self.continue_game_button.pack(
+            side="left",
+            padx=(5, 0)
+        )
         self.continue_game_button["state"] = "disabled"
 
-        self.check_solution_button = ttk.Button(self.game_root, text="Check Solution", style="my.TButton", command=self.check_solution)
+        self.check_solution_button = ttk.Button(
+            self.game_root,
+            text="Check Solution",
+            style="my.TButton",
+            command=self.check_solution
+        )
         self.check_solution_button.pack(pady=(10,5))
 
         name_entry_frame = ttk.Frame(self.game_root)
         name_entry_frame.pack(pady=(10, 0))
 
-        ttk.Label(name_entry_frame, text="Enter name:", font=("Calibri", 10)).pack(pady=(0,1))
-        self.name_entry = ttk.Entry(name_entry_frame, width=13)
+        ttk.Label(
+            name_entry_frame,
+            text="Enter name:",
+            font=("Calibri", 10)
+        ).pack(pady=(0,1))
+        self.name_entry = ttk.Entry(
+            name_entry_frame,
+            width=13
+        )
         self.name_entry.pack()
 
-        self.save_score_button = ttk.Button(self.game_root, text="Save score", style="my.TButton", command=self.save_game_score)
+        self.save_score_button = ttk.Button(
+            self.game_root,
+            text="Save score",
+            style="my.TButton",
+            command=self.save_game_score
+        )
         self.save_score_button.pack(pady=(10,5))
         self.save_score_button["state"] = "disabled"
 
-        ttk.Button(self.game_root, text="View leaderboard", style="my.TButton", command=self.view_leaderboard).pack(pady=(10,5))
-        ttk.Button(self.game_root, text="Return to menu", style="my.TButton", command=self.return_to_menu).pack(pady=(10,5))
-        ttk.Button(self.game_root, text="Exit game", style="my.TButton", command=self.exit_game).pack(pady=(10,20))
+        leave_game_buttons_frame = ttk.Frame(self.game_root)
+        leave_game_buttons_frame.pack(pady=(10, 20))
+
+        ttk.Button(
+            leave_game_buttons_frame,
+            text="View leaderboard",
+            style="my.TButton",
+            command=self.view_leaderboard
+        ).pack(side="left", padx=(0, 5))
+
+        ttk.Button(
+            leave_game_buttons_frame,
+            text="Return to menu",
+            style="my.TButton",
+            command=self.return_to_menu
+        ).pack(side="left", padx=(5, 5))
+
+        ttk.Button(
+            leave_game_buttons_frame,
+            text="Exit game",
+            style="my.TButton",
+            command=self.exit_game
+        ).pack(side="left", padx=(5, 0))
 
     def validate_game_entries(self, input):
         if len(input) == 1 and input in "123456789":
@@ -160,7 +254,6 @@ class SudokuUI:
         hours, minutes, seconds, _ = self.game.get_elapsed_time_for_current_game()
         self.timer.config(text=f"{hours:02}:{minutes:02}:{seconds:02}")
         self.timer_id = self.game_root.after(1000, self.update_timer)
-
 
     def pause_game(self):
         self.timer_running = False
@@ -212,28 +305,68 @@ class SudokuUI:
 
         scores = SudokuGame().show_leaderboard()
 
-        leaderboard_frame = ttk.Frame(self.leaderboard_root, padding=40)
+        leaderboard_frame = ttk.Frame(
+            self.leaderboard_root,
+            padding=40)
         leaderboard_frame.pack(padx=50)
 
-        ttk.Label(leaderboard_frame, text="Leaderboard", font=("Calibri", 20)).pack(pady=(0, 20))
+        ttk.Label(
+            leaderboard_frame,
+            text="Leaderboard",
+            font=("Calibri", 20)
+        ).pack(pady=(0, 20))
 
-        ttk.Label(leaderboard_frame, text="Hard", font=("Calibri", 15)).pack(pady=(0, 20))
+        ttk.Label(
+            leaderboard_frame,
+            text="Hard",
+            font=("Calibri", 15)
+        ).pack(pady=(0, 20))
         for score in scores[0]:
-            ttk.Label(leaderboard_frame, text=score, font=("Calibri", 15)).pack(anchor="w")
+            ttk.Label(
+                leaderboard_frame,
+                text=score,
+                font=("Calibri", 15)
+            ).pack(anchor="w")
 
-        ttk.Label(leaderboard_frame, text="Medium", font=("Calibri", 15)).pack(pady=(20, 20))
+        ttk.Label(
+            leaderboard_frame,
+            text="Medium",
+            font=("Calibri", 15)
+        ).pack(pady=(20, 20))
         for score in scores[1]:
-            ttk.Label(leaderboard_frame, text=score, font=("Calibri", 15)).pack(anchor="w")
+            ttk.Label(
+                leaderboard_frame,
+                text=score,
+                font=("Calibri", 15)
+            ).pack(anchor="w")
 
-        ttk.Label(leaderboard_frame, text="Easy", font=("Calibri", 15)).pack(pady=(20, 20))
+        ttk.Label(
+            leaderboard_frame,
+            text="Easy",
+            font=("Calibri", 15)
+        ).pack(pady=(20, 20))
         for score in scores[2]:
-            ttk.Label(leaderboard_frame, text=score, font=("Calibri", 15)).pack(anchor="w")
+            ttk.Label(
+                leaderboard_frame,
+                text=score,
+                font=("Calibri", 15)
+            ).pack(anchor="w")
 
         button_style = ttk.Style()
         button_style.configure("my.TButton", font=("Calibri", 10))
 
-        ttk.Button(self.leaderboard_root, text="Return to menu", style="my.TButton", command=self.return_to_menu).pack(pady=(0,10))
-        ttk.Button(self.leaderboard_root, text="Exit game", style="my.TButton", command=self.exit_game).pack(pady=(0,20))
+        ttk.Button(
+            self.leaderboard_root,
+            text="Return to menu",
+            style="my.TButton",
+            command=self.return_to_menu
+        ).pack(pady=(0,10))
+        ttk.Button(
+            self.leaderboard_root,
+            text="Exit game",
+            style="my.TButton",
+            command=self.exit_game
+        ).pack(pady=(0,20))
 
     def exit_game(self):
         current_root = None
@@ -293,12 +426,24 @@ class SudokuUI:
             hours, minutes, seconds, self.elapsed_time = self.game.get_elapsed_time_for_current_game()
             self.save_score_button["state"] = "normal"
             if hours > 0:
-                messagebox.showinfo("Success", f"Congratulations! You solved the Sudoku!\nTime: {hours}h {minutes}m {seconds}s")
+                messagebox.showinfo(
+                    "Success",
+                    f"Congratulations! You solved the Sudoku!\nTime: {hours}h {minutes}m {seconds}s"
+                )
             elif hours == 0 and minutes > 0:
-                messagebox.showinfo("Success", f"Congratulations! You solved the Sudoku!\nTime: {minutes}m {seconds}s")
+                messagebox.showinfo(
+                    "Success",
+                    f"Congratulations! You solved the Sudoku!\nTime: {minutes}m {seconds}s"
+                )
             else:
-                messagebox.showinfo("Success", f"Congratulations! You solved the Sudoku!\nTime: {seconds}s")
+                messagebox.showinfo(
+                    "Success",
+                    f"Congratulations! You solved the Sudoku!\nTime: {seconds}s"
+                )
 
             self.check_solution_button["state"] = "disabled"
         else:
-            messagebox.showerror("Error", "Incorrect solution!")
+            messagebox.showerror(
+                "Error",
+                "Incorrect solution."
+            )
