@@ -84,6 +84,6 @@ class TestSudokuGame(unittest.TestCase):
 
     def test_getting_elapsed_time(self):
         time.sleep(5)
-        elapsed_time = self.game.get_elapsed_time()
+        elapsed_time = self.game.get_elapsed_time_for_current_game()
 
         self.assertEqual(elapsed_time, (0,0,5,5))
