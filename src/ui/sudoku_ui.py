@@ -10,7 +10,6 @@ class SudokuUI:
         self.leaderboard_root = None
         self.initial_root.title("Sudoku")
         self.difficulty = tk.StringVar(value="Easy")
-        self.puzzle = None
         self.game_board = []
         self.game = None
         self.timer_running = False
@@ -71,7 +70,8 @@ class SudokuUI:
         self.timer_running = True
         self.update_timer()
 
-        self.puzzle = self.game.get_puzzle_board()
+        puzzle = self.game.get_puzzle_board()
+        vcmd = (self.game_root.register(self.validate_game_entries), '%P')
 
         # AI generated code starts here
         for block_row in range(3):
@@ -89,7 +89,7 @@ class SudokuUI:
                     for j in range(3):
                         row = block_row * 3 + i
                         col = block_col * 3 + j
-                        preset_value = self.puzzle[row][col]
+                        preset_value = puzzle[row][col]
 
                         entry = tk.Entry(
                             block_frame,
@@ -97,7 +97,9 @@ class SudokuUI:
                             font=("lucidatypewriter", 20),
                             justify="center",
                             relief="solid",
-                            bd=1
+                            bd=1,
+                            validate="key",
+                            validatecommand=vcmd
                         )
 
                         entry.grid(row=i, column=j, padx=1, pady=1)
@@ -143,6 +145,14 @@ class SudokuUI:
         ttk.Button(self.game_root, text="View leaderboard", style="my.TButton", command=self.view_leaderboard).pack(pady=(10,5))
         ttk.Button(self.game_root, text="Return to menu", style="my.TButton", command=self.return_to_menu).pack(pady=(10,5))
         ttk.Button(self.game_root, text="Exit game", style="my.TButton", command=self.exit_game).pack(pady=(10,20))
+
+    def validate_game_entries(self, input):
+        if len(input) == 1 and input in "123456789":
+            return True
+        elif len(input) == 0:
+            return True
+        else:
+            return False
 
     def update_timer(self):
         if not self.timer_running:
