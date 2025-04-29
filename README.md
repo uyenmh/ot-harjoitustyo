@@ -14,6 +14,7 @@ Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla ja tal
 ## Releaset
 
 - [Viikon 5 release](https://github.com/uyenmh/ot-harjoitustyo/releases/tag/viikko5)
+- [Viikon 6 release](https://github.com/uyenmh/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Asennus
 
