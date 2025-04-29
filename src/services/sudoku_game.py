@@ -4,8 +4,8 @@ from entities.score import Score
 from repositories.score_repository import score_repository
 
 
-class SudokuGame:
-    def __init__(self, difficulty="Easy"):
+class SudokuService:
+    def __init__(self, difficulty: str = "Easy"):
         self.difficulty = self._define_difficulty(difficulty)
         self.puzzle = Sudoku(3, seed=None).difficulty(self.difficulty)
         self.solution = self.puzzle.solve()

@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from services.sudoku_game import SudokuGame
+from services.sudoku_game import SudokuService
 
 
 class SudokuUI:
@@ -72,7 +72,7 @@ class SudokuUI:
         ).pack(padx=120, pady=(10,5))
 
     def start_game(self):
-        self.game = SudokuGame(self.difficulty.get())
+        self.game = SudokuService(self.difficulty.get())
 
         self.initial_root.destroy()
 
@@ -284,11 +284,14 @@ class SudokuUI:
 
         if self.game_root:
             current_root = self.game_root
-            view_leaderboard = messagebox.askyesno(
-                title="View leaderboard", 
-                message="Are you sure you want to view the leaderboard? " \
-                "All of the current game progress will be lost."
-            )
+            if self.check_solution_button.instate(["disabled"]):
+                view_leaderboard = True
+            else:
+                view_leaderboard = messagebox.askyesno(
+                    title="View leaderboard",
+                    message="Are you sure you want to view the leaderboard? " \
+                    "All of the current game progress will be lost."
+                )
             self.game_root.after_cancel(self.timer_id)
             self.timer_running = False
         else:
@@ -303,7 +306,7 @@ class SudokuUI:
         self.leaderboard_root = tk.Tk()
         self.leaderboard_root.title("Sudoku Leaderboard")
 
-        scores = SudokuGame().show_leaderboard()
+        scores = SudokuService().show_leaderboard()
 
         leaderboard_frame = ttk.Frame(
             self.leaderboard_root,
@@ -405,11 +408,14 @@ class SudokuUI:
             return_to_menu = True
         elif self.game_root:
             current_root = self.game_root
-            return_to_menu = messagebox.askyesno(
-                title="Return to menu",
-                message="Are you sure you want to return to menu? " \
-                "All of the current game progress will be lost."
-            )
+            if self.check_solution_button.instate(["disabled"]):
+                return_to_menu = True
+            else:
+                return_to_menu = messagebox.askyesno(
+                    title="Return to menu",
+                    message="Are you sure you want to return to menu? " \
+                    "All of the current game progress will be lost."
+                )
             self.game_root.after_cancel(self.timer_id)
             self.timer_running = False
 

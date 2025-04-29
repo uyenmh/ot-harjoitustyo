@@ -2,12 +2,12 @@ import unittest
 import time
 import tkinter as tk
 from sudoku import Sudoku
-from services.sudoku_game import SudokuGame
+from services.sudoku_game import SudokuService
 
 
-class TestSudokuGame(unittest.TestCase):
+class TestSudokuService(unittest.TestCase):
     def setUp(self):
-        self.game = SudokuGame()
+        self.game = SudokuService()
 
     def test_difficulty_not_changed(self):
         self.assertEqual(self.game.difficulty, 0.3)
