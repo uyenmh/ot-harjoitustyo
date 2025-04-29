@@ -1,7 +1,7 @@
 import unittest
 import time
 import tkinter as tk
-from sudoku import Sudoku
+from entities.score import Score
 from services.sudoku_game import SudokuService
 
 
@@ -82,8 +82,63 @@ class TestSudokuService(unittest.TestCase):
         result = self.game.is_solution_correct(board)
         self.assertEqual(result, True)
 
-    def test_getting_elapsed_time(self):
-        time.sleep(5)
+    def test_getting_elapsed_time_for_current_game_no_pause(self):
+        time.sleep(2)
         elapsed_time = self.game.get_elapsed_time_for_current_game()
 
-        self.assertEqual(elapsed_time, (0,0,5,5))
+        self.assertEqual(elapsed_time, (0,0,2,2))
+
+    def test_getting_elapsed_time_for_current_game_with_pause(self):
+        time.sleep(2)
+
+        self.game.pause_game()
+        time.sleep(1)
+        self.game.continue_game()
+        elapsed_time = self.game.get_elapsed_time_for_current_game()
+
+        self.assertEqual(elapsed_time, (0,0,2,2))
+
+    def test_pausing_game_gives_current_time(self):
+        current_time = time.time()
+        self.game.pause_game()
+
+        self.assertEqual(int(self.game.pause_time_start), int(current_time))
+
+    def test_continuing_once_paused_game_gives_total_paused_time(self):
+        self.game.pause_game()
+        time.sleep(1)
+        self.game.continue_game()
+
+        self.assertEqual(int(self.game.total_paused_time), 1)
+
+    def test_continuing_twice_paused_game_gives_total_paused_time(self):
+        self.game.pause_game()
+        time.sleep(1)
+        self.game.continue_game()
+
+        self.game.pause_game()
+        time.sleep(1)
+        self.game.continue_game()
+
+        self.assertEqual(int(self.game.total_paused_time), 2)
+
+    def test_getting_elapsed_time_as_string_with_only_seconds(self):
+        score = Score("anna", "Easy", 50)
+
+        time_as_str = self.game.get_elapsed_time_as_string(score)
+
+        self.assertEqual(time_as_str, "50s")
+
+    def test_getting_elapsed_time_as_string_with_seconds_and_minutes(self):
+        score = Score("anna", "Easy", 100)
+
+        time_as_str = self.game.get_elapsed_time_as_string(score)
+
+        self.assertEqual(time_as_str, "1m 40s")
+
+    def test_getting_elapsed_time_as_string_with_seconds_minutes_and_hours(self):
+        score = Score("anna", "Easy", 3605)
+
+        time_as_str = self.game.get_elapsed_time_as_string(score)
+
+        self.assertEqual(time_as_str, "1h 0m 5s")
