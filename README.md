@@ -1,13 +1,15 @@
 # Ohjelmistotekniikka, harjoitustyö: Sudoku
 
-Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla. 
+Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla ja tallentaa tuloksensa leaderboardiin.
 
 ## Dokumentaatio
 
+- [Käyttöohje](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 - [Työaikakirjanpito](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
+
 
 ## Releaset
 
