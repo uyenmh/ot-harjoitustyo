@@ -28,3 +28,12 @@
     - Aika tallentuu tietokantaan annetulla nimellä
     - Jos käyttäjä ei antanut nimeä, nimeksi tallentuu "unknown"
 - Käyttäjä voi tarkastella leaderboardia, jossa näkyy top 10 tulosta jokaiselle vaikeustasolle
+
+## Viikko 6
+
+- Sovellus varoittaa käyttäjää käynnissä olevan pelin keskeytymisestä
+- Käyttäjä saa varoitusviestin ennen sovelluksen sulkemista
+- Käyttäjä voi laittaa pelin paussille ja jatkaa peliä myöhemmin
+- Pelin syötteitä on rajattu välille 1-9
+- Testattu, että pelin tulos tallentuu oikein tietokantaan
+- Testattu, että ajastin toimii oikein pelin paussille laittamisen yhteydessä

@@ -21,4 +21,11 @@
 |14.4.  |4h      | koodin refaktorointia |
 |15.4.  |1.5h    | sekvenssikaavioiden luomista ja arkkitehtuurikuvauksen muokkaamista |
 |       |2h      | yksikkötestauksen lisäämistä ja muokkaamista |
-| yht   |43h     |
+|27.4.  |1.5h    | varoitus- ja varmistusviestin luomista |
+|       |2h      | pelin voi laittaa paussille ja peliä voi jatkaa paussin jälkeen |
+|       |0.5h    | pelin syötteitä rajattu |
+|       |1.5h    | refaktorointi, yksikkötestien luomista |
+|28.4.  |3.5h    | koodin docstring-dokumentointia |
+|29.4.  |1.5h    | koodin docstring-dokumentointia |
+|       |3h      | dokumentaation kirjoittamista |
+| yht   |56.5h   |

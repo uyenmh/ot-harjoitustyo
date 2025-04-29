@@ -4,7 +4,7 @@
 
 Käyttäjä voi pelata vaikeustasoltaan erilaisia sudoku pelejä ja lisätä peliin käyttämänsä aika tietokantaan.
 
-## Perusversion tarjoama toiminnallisuus
+## Sovelluksen tarjoama toiminnallisuus
 
 - Käyttäjä voi valita pelin vaikeustason &check;
 - Käyttäjä voi pelata sudokua valitsemallaan vaikeustasolla &check;
@@ -13,12 +13,12 @@ Käyttäjä voi pelata vaikeustasoltaan erilaisia sudoku pelejä ja lisätä pel
     - Tulos näkyy leaderboardissa, jos se on 10 parhaan joukossa &check;
 - Käyttäjä voi keskeyttää pelin (peliä ei voi jatkaa) &check;
 - Pelin keskeytyksen jälkeen käyttäjä voi aloittaa uuden pelin &check;
-- Täydennettyään sudokun, käyttäjä voi tarkistaa, onko vastaus oikein &check;
+- Täydennettyään sudokun, käyttäjä voi tarkistaa, onko vastaus oikein &check; 
+- Käyttäjä voi laittaa pelin paussille &check;
+    - Ajastin pysähtyy, kunnes käyttäjä jatkaa peliä &check;
 
 ## Jatkokehitysideat
 
-- Käyttäjä voi laittaa pelin paussille
-    - Ajastin pysähtyy, kunnes käyttäjä jatkaa peliä
 - Käyttäjä voi tyhjentää kaikki täyttämänsä ruudukot kerralla
 - Sovellus näyttää montako jokaista lukua on järjellä
 - Sovellus näyttää, mitkä ruudukot ovat väärin
