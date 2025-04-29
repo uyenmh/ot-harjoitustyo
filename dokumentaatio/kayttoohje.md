@@ -1,9 +1,5 @@
 # Käyttöohje
 
-## Konfigurointi
-
-## Ohjelman käynnistäminen
-
 ## Vaikeustason valitseminen ja uuden pelin aloittaminen
 
 Sovellus käynnistyy päävalikkoon:
@@ -40,7 +36,7 @@ Peli voidaan tarkistaa, missä tahansa vaiheessa painamalla "Check solution"-pai
 
 ## Pelituloksen tallentaminen
 
-Kun sudoku ollaan ratkaistu oikein, pelitulos voidaan tallentaa leaderboardiin.
+Kun sudoku ollaan ratkaistu oikein, pelitulos voidaan tallentaa leaderboardiin painamalla "Save score"-painiketta.
 
 ![Pelinäkymä, save score button](./kuvat/save_score.png)
 

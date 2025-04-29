@@ -120,7 +120,7 @@ sequenceDiagram
   actor User
   participant SudokuUI
   participant SudokuService
-  participant SudokuRepository
+  participant ScoreRepository
   participant Score
 
   User->>SudokuUI: click "Save score" button
@@ -129,4 +129,5 @@ sequenceDiagram
   SudokuUI->>SudokuService: save_score("unknown", "Easy", 360)
   SudokuService-->>Score: Score("unknown", "Easy", 360)
   SudokuService-->>ScoreRepository: save(score)
+  ScoreRepository-->>SudokuService: score
 ```
