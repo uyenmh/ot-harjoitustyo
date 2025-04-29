@@ -2,6 +2,12 @@ from db_connection import get_db_connection
 
 
 def drop_tables(connection):
+    """Deletes database tables.
+
+    Args:
+        connection (sqlite3.Connection): The database connection object.
+    """
+
     cursor = connection.cursor()
 
     cursor.execute("""
@@ -12,6 +18,12 @@ def drop_tables(connection):
 
 
 def create_tables(connection):
+    """Creates database tables.
+
+    Args:
+        connection (sqlite3.Connection): The database connection object.
+    """
+
     cursor = connection.cursor()
 
     cursor.execute("""
@@ -25,6 +37,8 @@ def create_tables(connection):
 
 
 def initialize_database():
+    """_Initializes the database tables."""
+
     connection = get_db_connection()
 
     drop_tables(connection)

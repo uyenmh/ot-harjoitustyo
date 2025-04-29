@@ -4,7 +4,15 @@ from services.sudoku_game import SudokuService
 
 
 class SudokuUI:
+    """A class responsible for the user interface."""
+
     def __init__(self, root):
+        """The class constructor. Initializes the main menu for the game.
+
+        Args:
+            root (tk.Tk): A Tkinter element used to initialize the UI.
+        """
+
         self.initial_root = root
         self.game_root = None
         self.leaderboard_root = None
@@ -24,6 +32,8 @@ class SudokuUI:
         self.choose_difficulty()
 
     def choose_difficulty(self):
+        """Displays the difficulty selection screen."""
+
         mainframe = ttk.Frame(
             self.initial_root,
             padding=10
@@ -72,6 +82,8 @@ class SudokuUI:
         ).pack(padx=120, pady=(10,5))
 
     def start_game(self):
+        """Initializes a new game based on the difficulty chosen."""
+
         self.game = SudokuService(self.difficulty.get())
 
         self.initial_root.destroy()
@@ -81,6 +93,8 @@ class SudokuUI:
         self.create_sudoku()
 
     def create_sudoku(self):
+        """Displays the Sudoku game, its timer and other controls."""
+
         self.timer = tk.Label(
             self.game_root,
             text="00:00:00",
@@ -241,6 +255,15 @@ class SudokuUI:
         ).pack(side="left", padx=(5, 0))
 
     def validate_game_entries(self, input):
+        """Validates the entries for the Sudoku game.
+
+        Args:
+            input (str): The current input for the Sudoku board cell.
+
+        Returns:
+            bool: True if input is a single digit between 1-9, False otherwise.
+        """
+
         if len(input) == 1 and input in "123456789":
             return True
         elif len(input) == 0:
@@ -249,6 +272,8 @@ class SudokuUI:
             return False
 
     def update_timer(self):
+        """Updates the game timer every second if the timer is running."""
+
         if not self.timer_running:
             return
         hours, minutes, seconds, _ = self.game.get_elapsed_time_for_current_game()
@@ -256,6 +281,8 @@ class SudokuUI:
         self.timer_id = self.game_root.after(1000, self.update_timer)
 
     def pause_game(self):
+        """Pauses the game and its timer."""
+
         self.timer_running = False
         self.game.pause_game()
 
@@ -263,6 +290,8 @@ class SudokuUI:
         self.continue_game_button["state"] = "normal"
 
     def continue_game(self):
+        """Continues the game and resumes its timer."""
+
         self.timer_running = True
         self.game.continue_game()
         self.update_timer()
@@ -271,6 +300,8 @@ class SudokuUI:
         self.pause_game_button["state"] = "normal"
 
     def save_game_score(self):
+        """Saves the score to the database if the solution is correct."""
+
         if self.game.is_solution_correct:
             if self.name_entry.get():
                 self.game.save_score(self.name_entry.get(), self.difficulty.get(), self.elapsed_time)
@@ -279,6 +310,8 @@ class SudokuUI:
         self.save_score_button["state"] = "disabled"
 
     def view_leaderboard(self):
+        """Displays the leaderboard, sorted by difficulty level."""
+
         current_root = None
         view_leaderboard = None
 
@@ -372,6 +405,8 @@ class SudokuUI:
         ).pack(pady=(0,20))
 
     def exit_game(self):
+        """Closes the application if the user confirms."""
+
         current_root = None
         exit_game = None
 
@@ -400,6 +435,8 @@ class SudokuUI:
         current_root.destroy()
 
     def return_to_menu(self):
+        """Returns to the main menu."""
+
         current_root = None
         return_to_menu = None
 
@@ -427,6 +464,8 @@ class SudokuUI:
         SudokuUI(new_root)
 
     def check_solution(self):
+        """Checks the user's solution and displays a success or error message."""
+
         if self.game.is_solution_correct(self.game_board):
             self.timer_running = False
             hours, minutes, seconds, self.elapsed_time = self.game.get_elapsed_time_for_current_game()
