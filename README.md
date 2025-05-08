@@ -2,6 +2,8 @@
 
 Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla ja tallentaa tuloksensa leaderboardiin.
 
+Sovelluksen viimeisin julkaisu löytyy [täältä](https://github.com/uyenmh/ot-harjoitustyo/releases/tag/loppupalautus).
+
 ## Dokumentaatio
 
 - [Käyttöohje](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
@@ -16,6 +18,7 @@ Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla ja tal
 
 - [Viikon 5 release](https://github.com/uyenmh/ot-harjoitustyo/releases/tag/viikko5)
 - [Viikon 6 release](https://github.com/uyenmh/ot-harjoitustyo/releases/tag/viikko6)
+- [Loppupalautus](https://github.com/uyenmh/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Asennus
 
