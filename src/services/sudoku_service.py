@@ -111,7 +111,7 @@ class SudokuService:
         pause_time_end = time.time()
         self.total_paused_time += pause_time_end - self.pause_time_start
 
-    def get_elapsed_time_as_string(self, score: Score) -> str:
+    def _get_elapsed_time_as_string(self, score: Score) -> str:
         """Converts the given score's elapsed time into a string.
 
         Args:
@@ -164,7 +164,7 @@ class SudokuService:
         index_easy = 1
 
         for score in scores:
-            time_as_str = self.get_elapsed_time_as_string(score)
+            time_as_str = self._get_elapsed_time_as_string(score)
 
             if score.difficulty == "Hard":
                 scores_at_hard.append(f"{index_hard}. {score.name} {time_as_str}")

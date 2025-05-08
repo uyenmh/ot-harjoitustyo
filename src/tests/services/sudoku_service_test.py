@@ -2,7 +2,7 @@ import unittest
 import time
 import tkinter as tk
 from entities.score import Score
-from services.sudoku_game import SudokuService
+from services.sudoku_service import SudokuService
 
 
 class TestSudokuService(unittest.TestCase):

@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from services.sudoku_game import SudokuService
+from services.sudoku_service import SudokuService
 
 
 class SudokuUI:
