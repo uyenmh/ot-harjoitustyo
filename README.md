@@ -7,6 +7,7 @@ Sovelluksen avulla käyttäjät voivat pelata sudokua eri vaikeustasoilla ja tal
 - [Käyttöohje](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+- [Testausdokumentti](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md)
 - [Työaikakirjanpito](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](https://github.com/uyenmh/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
@@ -26,6 +27,11 @@ poetry install
 Alusta tietokanta komennolla:
 ```bash
 poetry run invoke setup-db
+```
+
+Käynnistä sovellus komennolla:
+```bash
+poetry run invoke start
 ```
 
 ## Komentorivitoiminnot 
