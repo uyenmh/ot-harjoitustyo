@@ -5,9 +5,35 @@ from entities.score import Score
 from services.sudoku_service import SudokuService
 
 
+class FakeScoreRepository:
+    def __init__(self, scores=None):
+        self.scores = scores or []
+
+    def save(self, score):
+        self.scores.append(score)
+
+        return score
+
+    def show_top_ten(self):
+        top_ten = []
+        difficulties = ["Hard", "Medium", "Easy"]
+
+        for difficulty in difficulties:
+            scores_at_current_difficulty = []
+            for score in self.scores:
+                if score.difficulty == difficulty:
+                    scores_at_current_difficulty.append(score)
+            scores_at_current_difficulty.sort(key=lambda score: score.time)
+
+            top_ten.extend(scores_at_current_difficulty[:10])
+
+        return top_ten
+
+
 class TestSudokuService(unittest.TestCase):
     def setUp(self):
-        self.game = SudokuService()
+        self.fake_score_repository = FakeScoreRepository()
+        self.game = SudokuService("Easy", self.fake_score_repository)
 
     def test_difficulty_not_changed(self):
         self.assertEqual(self.game.difficulty, 0.3)
@@ -125,20 +151,97 @@ class TestSudokuService(unittest.TestCase):
     def test_getting_elapsed_time_as_string_with_only_seconds(self):
         score = Score("anna", "Easy", 50)
 
-        time_as_str = self.game.get_elapsed_time_as_string(score)
+        time_as_str = self.game._get_elapsed_time_as_string(score)
 
         self.assertEqual(time_as_str, "50s")
 
     def test_getting_elapsed_time_as_string_with_seconds_and_minutes(self):
         score = Score("anna", "Easy", 100)
 
-        time_as_str = self.game.get_elapsed_time_as_string(score)
+        time_as_str = self.game._get_elapsed_time_as_string(score)
 
         self.assertEqual(time_as_str, "1m 40s")
 
     def test_getting_elapsed_time_as_string_with_seconds_minutes_and_hours(self):
         score = Score("anna", "Easy", 3605)
 
-        time_as_str = self.game.get_elapsed_time_as_string(score)
+        time_as_str = self.game._get_elapsed_time_as_string(score)
 
         self.assertEqual(time_as_str, "1h 0m 5s")
+
+    def test_save_score_saves_one_score_in_repository(self):
+        self.game.save_score("anna", "Easy", 40)
+
+        self.assertEqual(len(self.fake_score_repository.scores), 1)
+
+        self.assertEqual(self.fake_score_repository.scores[0].name, "anna")
+        self.assertEqual(self.fake_score_repository.scores[0].difficulty, "Easy")
+        self.assertEqual(self.fake_score_repository.scores[0].time, 40)
+
+    def test_save_score_saves_two_scores_in_repository(self):
+        self.game.save_score("anna", "Easy", 40)
+        self.game.save_score("eddie", "Hard", 500)
+
+        self.assertEqual(len(self.fake_score_repository.scores), 2)
+
+        self.assertEqual(self.fake_score_repository.scores[0].name, "anna")
+        self.assertEqual(self.fake_score_repository.scores[0].difficulty, "Easy")
+        self.assertEqual(self.fake_score_repository.scores[0].time, 40)
+
+        self.assertEqual(self.fake_score_repository.scores[1].name, "eddie")
+        self.assertEqual(self.fake_score_repository.scores[1].difficulty, "Hard")
+        self.assertEqual(self.fake_score_repository.scores[1].time, 500)
+
+    def test_show_leaderboard_with_less_than_ten_scores_each_difficulty(self):
+        self.game.save_score("anna", "Easy", 40)
+        self.game.save_score("jessie", "Medium", 300)
+        self.game.save_score("eddie", "Hard", 500)
+
+        leaderboard = self.game.show_leaderboard()
+
+        self.assertEqual(len(leaderboard[0]), 1)
+        self.assertEqual(len(leaderboard[1]), 1)
+        self.assertEqual(len(leaderboard[2]), 1)
+
+        self.assertEqual(leaderboard[0][0], "1. eddie 8m 20s")
+        self.assertEqual(leaderboard[1][0], "1. jessie 5m 0s")
+        self.assertEqual(leaderboard[2][0], "1. anna 40s")
+
+    def test_show_leaderboard_with_more_than_ten_scores_at_easy(self):
+        self.game.save_score("anna", "Easy", 40)
+        self.game.save_score("anna", "Easy", 45)
+        self.game.save_score("anna", "Easy", 50)
+        self.game.save_score("betty", "Easy", 50)
+        self.game.save_score("betty", "Easy", 55)
+
+        self.game.save_score("anna", "Easy", 100)
+        self.game.save_score("anna", "Easy", 100)
+        self.game.save_score("anna", "Easy", 120)
+        self.game.save_score("betty", "Easy", 140)
+        self.game.save_score("anna", "Easy", 180)
+
+        self.game.save_score("anna", "Easy", 240)
+
+        self.game.save_score("jessie", "Medium", 300)
+        self.game.save_score("eddie", "Hard", 500)
+
+        leaderboard = self.game.show_leaderboard()
+
+        self.assertEqual(len(leaderboard[0]), 1)
+        self.assertEqual(len(leaderboard[1]), 1)
+        self.assertEqual(len(leaderboard[2]), 10)
+
+        self.assertEqual(leaderboard[0][0], "1. eddie 8m 20s")
+        self.assertEqual(leaderboard[1][0], "1. jessie 5m 0s")
+
+        self.assertEqual(leaderboard[2][0], "1. anna 40s")
+        self.assertEqual(leaderboard[2][1], "2. anna 45s")
+        self.assertEqual(leaderboard[2][2], "3. anna 50s")
+        self.assertEqual(leaderboard[2][3], "4. betty 50s")
+        self.assertEqual(leaderboard[2][4], "5. betty 55s")
+
+        self.assertEqual(leaderboard[2][5], "6. anna 1m 40s")
+        self.assertEqual(leaderboard[2][6], "7. anna 1m 40s")
+        self.assertEqual(leaderboard[2][7], "8. anna 2m 0s")
+        self.assertEqual(leaderboard[2][8], "9. betty 2m 20s")
+        self.assertEqual(leaderboard[2][9], "10. anna 3m 0s")

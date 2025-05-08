@@ -2,7 +2,7 @@ import time
 from tkinter import Entry
 from sudoku import Sudoku
 from entities.score import Score
-from repositories.score_repository import score_repository
+from repositories.score_repository import score_repository as default_score_repository
 
 
 class SudokuService:
@@ -12,12 +12,14 @@ class SudokuService:
     as well as saving and displaying of game scores.
     """
 
-    def __init__(self, difficulty: str = "Easy"):
+    def __init__(self, difficulty: str = "Easy", score_repository=default_score_repository):
         """The class constructor. Initializes the Sudoku game based on difficulty level.
 
         Args:
             difficulty (str, optional): Defines the difficulty level of the Sudoku game.
                 Defaults to "Easy".
+            score_repository (ScoreRepository, optional): Contains the methods for saving
+                and retrieving game scores. Defaults to default_score_repository.
         """
 
         self.difficulty = self._define_difficulty(difficulty)
@@ -174,7 +176,7 @@ class SudokuService:
                 scores_at_medium.append(f"{index_medium}. {score.name} {time_as_str}")
 
                 index_medium += 1
-            elif score.difficulty == "Easy":
+            else:
                 scores_at_easy.append(f"{index_easy}. {score.name} {time_as_str}")
 
                 index_easy += 1
