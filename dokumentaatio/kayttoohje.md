@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa projektin viimeisimmän releasen lähdekoodi. Lähdekoodin lataaminen onnistuu valitsemalla Assets-osion alta Source code.
+Lataa projektin viimeisimmän releasen lähdekoodi [täältä](https://github.com/uyenmh/ot-harjoitustyo/releases/tag/loppupalautus). Lähdekoodin lataaminen onnistuu valitsemalla Assets-osion alta Source code.
 
 ## Konfigurointi
 
