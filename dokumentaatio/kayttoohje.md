@@ -1,5 +1,45 @@
 # Käyttöohje
 
+Lataa projektin viimeisimmän releasen lähdekoodi. Lähdekoodin lataaminen onnistuu valitsemalla Assets-osion alta Source code.
+
+## Konfigurointi
+
+Tallennukseen käytettävän tiedoston nimi on konfiguroitu .env-tiedostossa, joka löytyy käynnistyshakemistosta. Tiedoston nimeä voi halutessa vaihtaa muokkaamalla .env-tiedostoa. Tiedostoa ei löydy lähdekoodin lataamishetkellä, mutta se luodaan automaattisesti data-hakemistoon sovelluksen alustuksessa. .env-tiedosto näyttää lataamishetkellä tältä:
+
+```
+DB_FILENAME = sudoku_db.sqlite
+```
+
+Tiedoston nimeä muokataan muuttamalla kohtaa "sudoku_db", esim. näin:
+
+```
+DB_FILENAME = sudoku_leaderboard.sqlite
+```
+
+## Sovelluksen käynnistäminen
+
+Ennen sovelluksen käynnistämistä, sen riippuvuudet tulee asentaa ja tietokanta alustaa.
+
+
+Riippuvuudet asennetaan komennolla:
+
+```
+poetry install
+```
+
+Tietokanta alustetaan komennolla:
+
+```
+poetry run invoke setup-db
+```
+
+Sovellus voidaan käynnistää tämän jälkeen komennolla:
+
+```
+poetry run invoke start
+```
+
+
 ## Vaikeustason valitseminen ja uuden pelin aloittaminen
 
 Sovellus käynnistyy päävalikkoon:
@@ -36,7 +76,7 @@ Peli voidaan tarkistaa, missä tahansa vaiheessa painamalla "Check solution"-pai
 
 ## Pelituloksen tallentaminen
 
-Kun sudoku ollaan ratkaistu oikein, pelitulos voidaan tallentaa leaderboardiin painamalla "Save score"-painiketta.
+Kun sudoku ollaan ratkaistu oikein, pelitulos voidaan tallentaa leaderboardiin painamalla "Save score"-painiketta. "Save score"-painikkeen yläpuolella on valkoinen laatikko, johon voidaan kirjoittaa nimi, mutta nimen kirjaaminen ei ole pakollista.
 
 ![Pelinäkymä, save score button](./kuvat/save_score.png)
 

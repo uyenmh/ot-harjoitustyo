@@ -23,7 +23,7 @@ Ohjelma noudattaa kolmitasoista kerrosarkkitehtuuria. Alla on kuvattuna sovelluk
         get_elapsed_time_for_current_game()
         pause_game()
         continue_game()
-        get_elapsed_time_as_string()
+        _get_elapsed_time_as_string()
         save_score()
         show_leaderboard()
     }

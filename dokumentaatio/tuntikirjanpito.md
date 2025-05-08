@@ -28,4 +28,6 @@
 |28.4.  |3.5h    | koodin docstring-dokumentointia |
 |29.4.  |1.5h    | koodin docstring-dokumentointia |
 |       |3h      | dokumentaation kirjoittamista |
-| yht   |56.5h   |
+|7.5.   |1h      | dokumentaation kirjoittamista |
+|8.5.   |3h      | dokumentaation kirjoittamista ja yksikkötestauksen lisäämistä |
+| yht   |60.5h   |
